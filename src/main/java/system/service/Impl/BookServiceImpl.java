@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import system.dao.BookDao;
 import system.domain.Book;
+import system.service.IBookService;
 
 import java.util.List;
 
 @Service
-public class BookServiceImpl {
+public class BookServiceImpl implements IBookService {
     @Autowired
     private BookDao bookDao;
 

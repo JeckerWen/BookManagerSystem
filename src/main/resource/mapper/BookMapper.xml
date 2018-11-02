@@ -12,15 +12,15 @@
     </resultMap>
 
     <select id="getBookList" resultMap="ResultMap">
-        SELECT * FROM BOOK
+        SELECT * FROM book
     </select>
 
     <select id="getBookById" parameterType="java.lang.String" resultMap="ResultMap">
-        SELECT * FROM BOOK WHERE BOOKID = #{bookId}
+        SELECT * FROM book WHERE BOOKID = #{bookId}
     </select>
 
     <insert id="insertBook" parameterType="system.domain.Book">
-        INSERT INTO BOOK
+        INSERT INTO book
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="bookId != null">
                 bookId,

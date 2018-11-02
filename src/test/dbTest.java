@@ -1,20 +1,18 @@
-import system.domain.Book;
-import system.service.BookService;
+import base.BaseTest;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import system.domain.Book;
+import system.service.IBookService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class dbTest {
+public class dbTest extends BaseTest {
     @Test
     public void test() {
-        ApplicationContext applicationContext= new FileSystemXmlApplicationContext("classpath:application.xml");
-        BookService bookService=applicationContext.getBean(BookService.class);
+        IBookService IBookService =this.wac.getBean(system.service.IBookService.class);
         List<Book> books = new ArrayList<Book>();
-        books = bookService.getBookList();
+        books = IBookService.getBookList();
     }
 }
