@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookManager.java.system.dao.BookDao">
+    <resultMap id="ResultMap" type="bookManager.java.system.domain.Book">
+        <id column="BOOKID" property="bookId" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="AUTHOR" property="author" jdbcType="VARCHAR"/>
+        <result column="PRESS" property="press" jdbcType="VARCHAR"/>
+        <result column="DESCRIP" property="descrip" jdbcType="VARCHAR"/>
+        <result column="NUMBER" property="number" jdbcType="INTEGER"/>
+        <result column="MEMO" property="memo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getBookList" resultMap="ResultMap">
+        SELECT * FROM BOOK
+    </select>
+
+    <select id="getBookById" parameterType="java.lang.String" resultMap="ResultMap">
+        SELECT * FROM BOOK WHERE BOOKID = #{bookId}
+    </select>
+
+    <insert id="insertBook" parameterType="bookManager.java.system.domain.Book">
+        INSERT INTO BOOK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookId != null">
+                bookId,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="press != null">
+                press,
+            </if>
+            <if test="descrip != null">
+                descrip,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="memo != null">
+                memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="bookId != null">
+                `bookId` = #{bookId, jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                `author` = #{author, jdbcType=VARCHAR},
+            </if>
+            <if test="press != null">
+                `press` = #{press, jdbcType=VARCHAR},
+            </if>
+            <if test="descrip != null">
+                `descrip` = #{descrip, jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                `number` = #{number, jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                `memo` = #{memo, jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="dropBookById" parameterType="java.lang.String">
+        DELETE FROM book WHERE bookId = #{bookId}
+    </delete>
+
+
+    <update id="updateBook" parameterType="bookManager.java.system.domain.Book">
+        UPDATE book
+        <set>
+            <if test="name != null">
+                `name` = #{name, jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                `author` = #{author, jdbcType=VARCHAR},
+            </if>
+            <if test="press != null">
+                `press` = #{press, jdbcType=VARCHAR},
+            </if>
+            <if test="descrip != null">
+                `descrip` = #{descrip, jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                `number` = #{number, jdbcType=INTEGER},
+            </if>
+            <if test="memo != null">
+                `memo` = #{memo, jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE bookId = #{bookId, jdbcType=VARCHAR}
+    </update>
+    public int updateBook(Book book);
+</mapper>
+
