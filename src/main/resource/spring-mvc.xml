@@ -12,8 +12,7 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan
-		base-package="system.controller" />
+	<context:component-scan base-package="system.controller"/>
 	<!--设置@ReponseBody乱码问题-->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">

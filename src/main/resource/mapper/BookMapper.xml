@@ -16,7 +16,7 @@
     </select>
 
     <select id="getBookById" parameterType="java.lang.String" resultMap="ResultMap">
-        SELECT * FROM book WHERE BOOKID = #{bookId}
+        SELECT * FROM book WHERE id = #{bookId}
     </select>
 
     <insert id="insertBook" parameterType="system.domain.Book">
@@ -70,7 +70,7 @@
     </insert>
 
     <delete id="dropBookById" parameterType="java.lang.String">
-        DELETE FROM book WHERE bookId = #{bookId}
+        DELETE FROM book WHERE id = #{bookId}
     </delete>
 
 
@@ -96,6 +96,6 @@
                 `memo` = #{memo, jdbcType=VARCHAR},
             </if>
         </set>
-        WHERE bookId = #{bookId, jdbcType=VARCHAR}
+        WHERE id = #{bookId, jdbcType=VARCHAR}
     </update>
 </mapper>
